@@ -35,15 +35,19 @@ nltk.download('wordnet')
 from pyresparser import ResumeParser
 
 app_dir = os.path.dirname(os.path.abspath(__file__))
-project_root = os.path.dirname(app_dir)
 
+# Image paths (Logo folder is inside App)
+dark_logo = os.path.join(app_dir, "Logo", "RESUME.PNG")
+light_logo = os.path.join(app_dir, "Logo", "RESUM.PNG")
+
+# Debug check
+st.write("Light Logo Path:", light_logo)
+st.write("Exists?", os.path.exists(light_logo))
 
 # Toggle using checkbox
-mode = st.sidebar.checkbox("🌗")
+mode = st.sidebar.toggle("Dark Mode", value=False)
 
-# Use your uploaded image for dark mode
-dark_logo = os.path.join(project_root, "Logo", "RESUME.PNG")
-light_logo = os.path.join(project_root, "Logo", "RESUM.PNG")  # Replace with your light mode logo filename
+
 
 # Apply styles based on mode
 if mode:
@@ -138,7 +142,11 @@ else:
                 
         </style>
     """, unsafe_allow_html=True)
+    
+    if os.path.exists(light_logo):
     st.image(light_logo, use_column_width=True)
+else:
+    st.error("⚠️ Light logo not found. Check path or file name.")
     
 
 
