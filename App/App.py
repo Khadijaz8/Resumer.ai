@@ -44,7 +44,7 @@ st.write("Light Logo Path:", light_logo)
 st.write("Exists?", os.path.exists(light_logo))
 
 # Toggle using checkbox
-mode = st.sidebar.toggle("Dark Mode", value=False)
+mode = st.sidebar.toggle("🌗 Dark Mode", value=False)
 
 
 
