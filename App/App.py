@@ -505,6 +505,13 @@ def run():
             results = geolocator.reverse_geocode(latlong[0], latlong[1])
             if results and len(results):
                 location = results[0]['formatted']
+                address = results[0]['components']
+                cityy = address.get('city', '')
+                statee = address.get('state', '')
+                countryy = address.get('country', '')  
+                city = cityy
+                state = statee
+                country = countryy
             else:
                 location = "Unknown Location"
         else:
@@ -512,12 +519,7 @@ def run():
         # geolocator = Nominatim(user_agent="http")
         # location = geolocator.reverse(latlong, language='en')
         address = location.raw['address']
-        cityy = address.get('city', '')
-        statee = address.get('state', '')
-        countryy = address.get('country', '')  
-        city = cityy
-        state = statee
-        country = countryy
+       
 
 
         # Upload Resume
