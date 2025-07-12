@@ -33,6 +33,7 @@ nltk.download('stopwords')
 nltk.download('punkt')
 nltk.download('wordnet')
 from pyresparser import ResumeParser
+geolocator = Nominatim(user_agent="resumer_ai_app")
 
 app_dir = "/mount/src/resumer.ai/App"
 # st.write("app_dir:", app_dir)
