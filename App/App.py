@@ -935,7 +935,7 @@ def run():
         </p><br>
 
         ''',unsafe_allow_html=True)
-   elif choice == 'Job Matches':
+    elif choice == 'Job Matches':
     st.subheader("**About The Tool - Resumer**")
 
     # Load job dataset from dictionary
