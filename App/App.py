@@ -992,7 +992,7 @@ def run():
             st.write("### Job Recommendations:")
             st.dataframe(matched_jobs)
 
-    if not matched_jobs.empty:
+        if not matched_jobs.empty:
             for _, row in matched_jobs.iterrows():
                 insertj_data(resume_id, row['title'], row['location'], row['skills_required'])
 
