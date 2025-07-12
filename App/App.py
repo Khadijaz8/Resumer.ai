@@ -500,13 +500,13 @@ def run():
         g = geocoder.ip('me')
         latlong = g.latlng
         if latlong:
-    results = geolocator.reverse_geocode(latlong[0], latlong[1])
-    if results and len(results):
-        location = results[0]['formatted']
-    else:
-        location = "Unknown Location"
-else:
-    location = "LatLong Not Found"
+            results = geolocator.reverse_geocode(latlong[0], latlong[1])
+                if results and len(results):
+                    location = results[0]['formatted']
+                else:
+                    location = "Unknown Location"
+        else:
+            location = "LatLong Not Found"
         # geolocator = Nominatim(user_agent="http")
         # location = geolocator.reverse(latlong, language='en')
         address = location.raw['address']
