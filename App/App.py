@@ -29,7 +29,6 @@ from io import BytesIO
 from docxtpl import DocxTemplate  # Ensure you have this import
 # pre stored data for prediction purposes
 from Courses import ds_course,web_course,android_course,ios_course,uiux_course,resume_videos,interview_videos
-geolocator = OpenCageGeocode(st.secrets["OPENCAGE_API_KEY"])
 import nltk
 nltk.download('stopwords')
 nltk.download('punkt')
@@ -497,6 +496,7 @@ def run():
         ip_add = socket.gethostbyname(host_name)
         dev_user =  getpass.getuser()
         os_name_ver = platform.system() + " " + platform.release()
+        geolocator = OpenCageGeocode(st.secrets["OPENCAGE_API_KEY"])
         g = geocoder.ip('me')
         latlong = g.latlng
         if latlong:
