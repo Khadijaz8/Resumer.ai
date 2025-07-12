@@ -34,7 +34,7 @@ nltk.download('wordnet')
 from pyresparser import ResumeParser
 
 app_dir = os.path.dirname(os.path.abspath(__file__))
-
+st.write("app_dir:", app_dir)
 # Image paths (Logo folder is inside App)
 dark_logo = os.path.join(app_dir, "Logo", "RESUME.PNG")
 light_logo = os.path.join(app_dir, "Logo", "RESUM.PNG")
