@@ -365,7 +365,7 @@ def run():
     st.sidebar.markdown("# Choose Something...")
     activities = ["About","Resume Generator","User", "Feedback","Job Matches", "Admin"]
     choice = st.sidebar.selectbox("Choose among the given options:", activities)
-   link = '<b>Built by <a href="https://www.linkedin.com/in/khadijaijaz8/">Khadija Ijaz</a>,<a href="https://pk.linkedin.com/in/misbah-farooq-711408364">Misbah Farooq</a>, <a href=#>Mehwish Shahzadi</a>and <a href="https://www.linkedin.com/in/ayesha-barlas-6b703a22b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">Ayesha Barlas</a>.</b>' 
+    link = '<b>Built by <a href="https://www.linkedin.com/in/khadijaijaz8/">Khadija Ijaz</a>,<a href="https://pk.linkedin.com/in/misbah-farooq-711408364">Misbah Farooq</a>, <a href=#>Mehwish Shahzadi</a>and <a href="https://www.linkedin.com/in/ayesha-barlas-6b703a22b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">Ayesha Barlas</a>.</b>' 
     st.sidebar.markdown(link, unsafe_allow_html=True)
     st.sidebar.markdown('''
         <!-- site visitors -->
