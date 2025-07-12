@@ -1030,7 +1030,7 @@ def run():
         resume = st.file_uploader("Upload your resume (PDF only)", type=["pdf"])
         location = st.selectbox("Select preferred job location", list(jobs_df['location'].unique()))
 
-            if resume and location:
+        if resume and location:
                 text = extract_text_from_resume(resume)
                 skills = extract_skills(text)
                 st.write("### Extracted Skills:", skills)
