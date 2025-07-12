@@ -936,43 +936,44 @@ def run():
 
         ''',unsafe_allow_html=True)
     elif choice == 'Job Matches':
-        st.subheader("**About The Tool - Resumer**")
-       # Load job dataset from CSV
-       data = {
-    "title": [
-        "Software Engineer", "Data Analyst", "Web Developer", "Cybersecurity Analyst",
-        "Machine Learning Engineer", "DevOps Engineer", "Product Manager",
-        "Business Analyst", "UI/UX Designer", "Database Administrator",
-        "Cloud Engineer", "Network Engineer", "Technical Writer", "QA Engineer",
-        "Mobile App Developer", "Data Scientist", "System Administrator",
-        "IT Support Specialist", "Full Stack Developer", "Security Consultant",
-        "AI Researcher", "Frontend Developer", "Cloud Architect", "Penetration Tester",
-        "Database Engineer", "Solutions Architect", "Technical Support",
-        "Digital Marketer", "Backend Developer", "CRM Specialist", "Blockchain Developer"
-    ],
-    "location": [
-        "USA", "Germany", "UK", "Remote",
-        "Canada", "Pakistan", "India",
-        "UAE", "Saudi Arabia", "Australia",
-        "South Africa", "Malaysia", "Egypt", "Bangladesh",
-        "Turkey", "USA", "Nigeria",
-        "Pakistan", "India", "Remote",
-        "UK", "Germany", "Canada", "USA",
-        "Australia", "Pakistan", "Bangladesh",
-        "UAE", "Saudi Arabia", "South Africa", "Malaysia"
-    ],
-    "skills_required": [
-        "Python;Django;SQL", "Excel;SQL;PowerBI", "HTML;CSS;JavaScript", "Security;Networking;Python",
-        "TensorFlow;Scikit-learn;Python", "Docker;CI/CD;Linux", "Agile;Leadership;JIRA",
-        "BI Tools;SQL;Communication", "Figma;Adobe XD;CSS", "SQL Server;DBA;Indexing",
-        "AWS;GCP;Azure", "Cisco;Subnetting;Firewall", "Docs;APIs;Markdown", "JUnit;Selenium;Java",
-        "Flutter;Kotlin;Swift", "Pandas;Data Viz;ML", "Bash;Monitoring;Linux",
-        "IT Support;Windows;Helpdesk", "MERN;Node.js;React", "VAPT;Nessus;Compliance",
-        "Deep Learning;NLP;PyTorch", "React;Tailwind;UI", "GCP;AWS;Terraform", "BurpSuite;OWASP;Linux",
-        "MySQL;PostgreSQL;ERD", "Solution Design;Cloud;DevOps", "Customer Service;CRM;Troubleshooting",
-        "SEO;Content;Campaigns", "Node.js;Express;MongoDB", "HubSpot;Salesforce;Analytics", "Solidity;Smart Contracts;Ethereum"
-    ]
-}
+    st.subheader("**About The Tool - Resumer**")
+
+    # Load job dataset from dictionary
+    data = {
+        "title": [
+            "Software Engineer", "Data Analyst", "Web Developer", "Cybersecurity Analyst",
+            "Machine Learning Engineer", "DevOps Engineer", "Product Manager",
+            "Business Analyst", "UI/UX Designer", "Database Administrator",
+            "Cloud Engineer", "Network Engineer", "Technical Writer", "QA Engineer",
+            "Mobile App Developer", "Data Scientist", "System Administrator",
+            "IT Support Specialist", "Full Stack Developer", "Security Consultant",
+            "AI Researcher", "Frontend Developer", "Cloud Architect", "Penetration Tester",
+            "Database Engineer", "Solutions Architect", "Technical Support",
+            "Digital Marketer", "Backend Developer", "CRM Specialist", "Blockchain Developer"
+        ],
+        "location": [
+            "USA", "Germany", "UK", "Remote",
+            "Canada", "Pakistan", "India",
+            "UAE", "Saudi Arabia", "Australia",
+            "South Africa", "Malaysia", "Egypt", "Bangladesh",
+            "Turkey", "USA", "Nigeria",
+            "Pakistan", "India", "Remote",
+            "UK", "Germany", "Canada", "USA",
+            "Australia", "Pakistan", "Bangladesh",
+            "UAE", "Saudi Arabia", "South Africa", "Malaysia"
+        ],
+        "skills_required": [
+            "Python;Django;SQL", "Excel;SQL;PowerBI", "HTML;CSS;JavaScript", "Security;Networking;Python",
+            "TensorFlow;Scikit-learn;Python", "Docker;CI/CD;Linux", "Agile;Leadership;JIRA",
+            "BI Tools;SQL;Communication", "Figma;Adobe XD;CSS", "SQL Server;DBA;Indexing",
+            "AWS;GCP;Azure", "Cisco;Subnetting;Firewall", "Docs;APIs;Markdown", "JUnit;Selenium;Java",
+            "Flutter;Kotlin;Swift", "Pandas;Data Viz;ML", "Bash;Monitoring;Linux",
+            "IT Support;Windows;Helpdesk", "MERN;Node.js;React", "VAPT;Nessus;Compliance",
+            "Deep Learning;NLP;PyTorch", "React;Tailwind;UI", "GCP;AWS;Terraform", "BurpSuite;OWASP;Linux",
+            "MySQL;PostgreSQL;ERD", "Solution Design;Cloud;DevOps", "Customer Service;CRM;Troubleshooting",
+            "SEO;Content;Campaigns", "Node.js;Express;MongoDB", "HubSpot;Salesforce;Analytics", "Solidity;Smart Contracts;Ethereum"
+        ]
+    }
 
 
         jobs_df = pd.DataFrame(data)
