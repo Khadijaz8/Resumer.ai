@@ -39,11 +39,11 @@ st.write("app_dir:", app_dir)
 dark_logo = os.path.join(app_dir, "Logo", "RESUME.PNG")
 light_logo = os.path.join(app_dir, "Logo", "RESUM.PNG")
 
-# Debug check
-st.write("Light Logo Path:", light_logo)
-st.write("Exists?", os.path.exists(light_logo))
+# # Debug check
+# st.write("Light Logo Path:", light_logo)
+# st.write("Exists?", os.path.exists(light_logo))
 
-st.write(st.secrets)
+# st.write(st.secrets)
 
 
 # Toggle using checkbox
