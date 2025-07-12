@@ -982,15 +982,15 @@ def run():
     resume = st.file_uploader("Upload your resume (PDF only)", type=["pdf"])
     location = st.selectbox("Select preferred job location", list(jobs_df['location'].unique()))
 
-    if resume and location:
-        text = extract_text_from_resume(resume)
-        skills = extract_skills(text)
-        st.write("### Extracted Skills:", skills)
-        resume_id = insertr_data(text, ", ".join(skills), location)
+        if resume and location:
+            text = extract_text_from_resume(resume)
+            skills = extract_skills(text)
+            st.write("### Extracted Skills:", skills)
+            resume_id = insertr_data(text, ", ".join(skills), location)
 
-        matched_jobs = match_jobs(skills, location)
-        st.write("### Job Recommendations:")
-        st.dataframe(matched_jobs)
+            matched_jobs = match_jobs(skills, location)
+            st.write("### Job Recommendations:")
+            st.dataframe(matched_jobs)
 
         if not matched_jobs.empty:
             for _, row in matched_jobs.iterrows():
@@ -1059,7 +1059,7 @@ def create_bar_chart(df):
     
 
     ##### CODE FOR ADMIN SIDE (ADMIN) ######
-     else:
+    else:
         st.success('Welcome to Admin Side')
 #  Admin Login
         ad_user = st.text_input("Username")
