@@ -39,16 +39,10 @@ OPENCAGE_API_KEY= "441870bd43c842de9c116d11752639ba"
 
 
 app_dir = "/mount/src/resumer.ai/App"
-st.write("api_key:", OPENCAGE_API_KEY)
+
 # Image paths (Logo folder is inside App)
 dark_logo = os.path.join(app_dir, "Logo", "RESUME.PNG")
 light_logo = os.path.join(app_dir, "Logo", "RESUM.PNG")
-
-# # Debug check
-# st.write("Light Logo Path:", light_logo)
-# st.write("Exists?", os.path.exists(light_logo))
-
-# st.write(st.secrets)
 
 
 # Toggle using checkbox
@@ -518,7 +512,7 @@ def run():
             location = "LatLong Not Found"
         # geolocator = Nominatim(user_agent="http")
         # location = geolocator.reverse(latlong, language='en')
-        address = location.raw['address']
+        # address = location.raw['address']
        
 
 
