@@ -36,7 +36,7 @@ nltk.download('punkt')
 nltk.download('wordnet')
 from pyresparser import ResumeParser
 OPENCAGE_API_KEY= "441870bd43c842de9c116d11752639ba"
-
+nlp = spacy.load("en_core_web_sm")
 
 app_dir = "/mount/src/resumer.ai/App"
 
