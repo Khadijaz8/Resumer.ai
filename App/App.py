@@ -935,8 +935,8 @@ def run():
         </p><br>
 
         ''',unsafe_allow_html=True)
-    elif choice == 'Job Matches':
-        st.subheader("**About The Tool - Resumer**")
+   elif choice == 'Job Matches':
+    st.subheader("**About The Tool - Resumer**")
 
     # Load job dataset from dictionary
     data = {
@@ -975,97 +975,85 @@ def run():
         ]
     }
 
-
     jobs_df = pd.DataFrame(data)
 
+    st.title("Resume-based Job Recommender")
 
-        
+    resume = st.file_uploader("Upload your resume (PDF only)", type=["pdf"])
+    location = st.selectbox("Select preferred job location", list(jobs_df['location'].unique()))
+
+    if resume and location:
+        text = extract_text_from_resume(resume)
+        skills = extract_skills(text)
+        st.write("### Extracted Skills:", skills)
+        resume_id = insertr_data(text, ", ".join(skills), location)
+
+        matched_jobs = match_jobs(skills, location)
+        st.write("### Job Recommendations:")
+        st.dataframe(matched_jobs)
+
+        if not matched_jobs.empty:
+            for _, row in matched_jobs.iterrows():
+                insertj_data(resume_id, row['title'], row['location'], row['skills_required'])
+
+            fig = create_bar_chart(matched_jobs)
+            st.pyplot(fig)
+
+            csv = matched_jobs.to_csv(index=False).encode('utf-8')
+            st.download_button("Download Job Table", csv, "job_recommendations.csv", "text/csv")
+
+            buf = io.BytesIO()
+            fig.savefig(buf, format="png")
+            st.download_button("Download Graph", buf, "job_graph.png", "image/png")
+        else:
+            st.warning("No matching jobs found.")
 
 
+# ---------------------- OUTSIDE THE IF/ELIF BLOCK ------------------------
 
-
-
-# Function to extract text from resume (placeholder)
-      
-
-        def extract_text_from_resume(file):
-            if file is not None:
-                with open("temp_resume.pdf", "wb") as f:
-                    f.write(file.read())
-                text = extract_text("temp_resume.pdf")
-                return text
-            return ""
+# Function to extract text from resume
+def extract_text_from_resume(file):
+    if file is not None:
+        with open("temp_resume.pdf", "wb") as f:
+            f.write(file.read())
+        text = extract_text("temp_resume.pdf")
+        return text
+    return ""
 
 
 # Function to extract skills from resume using regex instead of NLP
-        def extract_skills(text):
-            skill_keywords = [
-                "Python", "Django", "SQL", "Excel", "Tableau", "HTML", "CSS", "JavaScript",
-                "Security", "Networking", "TensorFlow", "Machine Learning", "Docker",
-                "Kubernetes", "AWS", "Azure", "Selenium", "Kotlin", "Swift", "R",
-                "Linux", "Agile", "Figma", "Scripting"
-                ]
+def extract_skills(text):
+    skill_keywords = [
+        "Python", "Django", "SQL", "Excel", "Tableau", "HTML", "CSS", "JavaScript",
+        "Security", "Networking", "TensorFlow", "Machine Learning", "Docker",
+        "Kubernetes", "AWS", "Azure", "Selenium", "Kotlin", "Swift", "R",
+        "Linux", "Agile", "Figma", "Scripting"
+    ]
 
-            found_skills = set()
-            for keyword in skill_keywords:
-                if re.search(rf'\b{re.escape(keyword)}\b', text, re.IGNORECASE):
-                    found_skills.add(keyword)
-            return list(found_skills)
-        
+    found_skills = set()
+    for keyword in skill_keywords:
+        if re.search(rf'\b{re.escape(keyword)}\b', text, re.IGNORECASE):
+            found_skills.add(keyword)
+    return list(found_skills)
+
 
 # Function to match jobs based on skills and location
-        def match_jobs(skills, location):
-            matched = []
-            for _, row in jobs_df.iterrows():
-                job_skills = row['skills_required'].split(';')
-                if row['location'] == location and any(skill in job_skills for skill in skills):
-                    matched.append(row)
-            return pd.DataFrame(matched)
+def match_jobs(skills, location):
+    matched = []
+    for _, row in jobs_df.iterrows():
+        job_skills = row['skills_required'].split(';')
+        if row['location'] == location and any(skill in job_skills for skill in skills):
+            matched.append(row)
+    return pd.DataFrame(matched)
+
 
 # Function to create bar chart
-        def create_bar_chart(df):
-            fig, ax = plt.subplots()
-            df['title'].value_counts().plot(kind='bar', ax=ax)
-            ax.set_title("Job Recommendations by Title")
-            ax.set_ylabel("Count")
-            return fig
-
-# Streamlit app
-        st.title("Resume-based Job Recommender")
-
-        resume = st.file_uploader("Upload your resume (PDF only)", type=["pdf"])
-        location = st.selectbox("Select preferred job location", list(jobs_df['location'].unique()))
-
-        ##location = st.selectbox("Select preferred job location", jobs_df['location'].unique())
-
-        if resume and location:
-            text = extract_text_from_resume(resume)
-            skills = extract_skills(text)
-            st.write("### Extracted Skills:", skills)
-            resume_id = insertr_data(text, ", ".join(skills), location)
-
-            matched_jobs = match_jobs(skills, location)
-            st.write("### Job Recommendations:")
-            st.dataframe(matched_jobs)
-
-            if not matched_jobs.empty:
-                 # Save each matched job to DB linked with resume_id
-                for _, row in matched_jobs.iterrows():
-                    insertj_data(resume_id, row['title'], row['location'], row['skills_required'])
-               
-                
-                fig = create_bar_chart(matched_jobs)
-                st.pyplot(fig)
-
-                csv = matched_jobs.to_csv(index=False).encode('utf-8')
-                st.download_button("Download Job Table", csv, "job_recommendations.csv", "text/csv")
-
-                buf = io.BytesIO()
-                fig.savefig(buf, format="png")
-                st.download_button("Download Graph", buf, "job_graph.png", "image/png")
-            else:
-                st.warning("No matching jobs found.")
-
+def create_bar_chart(df):
+    fig, ax = plt.subplots()
+    df['title'].value_counts().plot(kind='bar', ax=ax)
+    ax.set_title("Job Recommendations by Title")
+    ax.set_ylabel("Count")
+    return fig
 
 
     # else:
