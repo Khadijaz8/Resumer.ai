@@ -498,7 +498,7 @@ def run():
         ip_add = socket.gethostbyname(host_name)
         dev_user =  getpass.getuser()
         os_name_ver = platform.system() + " " + platform.release()
-        geolocator = OpenCageGeocode(st.secrets["OPENCAGE_API_KEY"])
+        geolocator = OpenCageGeocode(OPENCAGE_API_KEY)
         g = geocoder.ip('me')
         latlong = g.latlng
         if latlong:
