@@ -170,7 +170,7 @@ questions = [
 ]
 
 # Path to the resume template
-template_file = "./resume_template.docx"  # Update with your actual path
+template_file = "/mount/src/resumer.ai/App/resume_template.docx"  # Update with your actual path
 
 # Function to render the resume form
 def render_form():
@@ -405,7 +405,7 @@ def run():
     ###### Creating Database and Table ######
 
 
-    # Create the DB
+    # Create the  DB
     db_sql = """CREATE DATABASE IF NOT EXISTS CV;"""
     cursor.execute(db_sql)
 
