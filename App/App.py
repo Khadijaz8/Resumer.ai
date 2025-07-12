@@ -43,6 +43,9 @@ light_logo = os.path.join(app_dir, "Logo", "RESUM.PNG")
 st.write("Light Logo Path:", light_logo)
 st.write("Exists?", os.path.exists(light_logo))
 
+st.write(st.secrets)
+
+
 # Toggle using checkbox
 mode = st.sidebar.checkbox("🌗")
 
