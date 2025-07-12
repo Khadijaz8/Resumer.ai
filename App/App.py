@@ -1,4 +1,3 @@
-
 import streamlit as st # core package used in this project
 import pandas as pd
 import base64, random
@@ -144,9 +143,9 @@ else:
     """, unsafe_allow_html=True)
     
     if os.path.exists(light_logo):
-    st.image(light_logo, use_column_width=True)
-else:
-    st.error("⚠️ Light logo not found. Check path or file name.")
+        st.image(light_logo, use_column_width=True)
+    else:
+        st.error("⚠️ Light logo not found. Check path or file name.")
     
 
 
