@@ -984,77 +984,77 @@ def run():
 
         ''',unsafe_allow_html=True)
     elif choice == 'Job Matches':
-    st.subheader("**About The Tool - Resumer**")
+        st.subheader("**About The Tool - Resumer**")
 
     # Load job dataset from dictionary
-    data = {
-        "title": [
-            "Software Engineer", "Data Analyst", "Web Developer", "Cybersecurity Analyst",
-            "Machine Learning Engineer", "DevOps Engineer", "Product Manager",
-            "Business Analyst", "UI/UX Designer", "Database Administrator",
-            "Cloud Engineer", "Network Engineer", "Technical Writer", "QA Engineer",
-            "Mobile App Developer", "Data Scientist", "System Administrator",
-            "IT Support Specialist", "Full Stack Developer", "Security Consultant",
-            "AI Researcher", "Frontend Developer", "Cloud Architect", "Penetration Tester",
-            "Database Engineer", "Solutions Architect", "Technical Support",
-            "Digital Marketer", "Backend Developer", "CRM Specialist", "Blockchain Developer"
-        ],
-        "location": [
-            "USA", "Germany", "UK", "Remote",
-            "Canada", "Pakistan", "India",
-            "UAE", "Saudi Arabia", "Australia",
-            "South Africa", "Malaysia", "Egypt", "Bangladesh",
-            "Turkey", "USA", "Nigeria",
-            "Pakistan", "India", "Remote",
-            "UK", "Germany", "Canada", "USA",
-            "Australia", "Pakistan", "Bangladesh",
-            "UAE", "Saudi Arabia", "South Africa", "Malaysia"
-        ],
-        "skills_required": [
-            "Python;Django;SQL", "Excel;SQL;PowerBI", "HTML;CSS;JavaScript", "Security;Networking;Python",
-            "TensorFlow;Scikit-learn;Python", "Docker;CI/CD;Linux", "Agile;Leadership;JIRA",
-            "BI Tools;SQL;Communication", "Figma;Adobe XD;CSS", "SQL Server;DBA;Indexing",
-            "AWS;GCP;Azure", "Cisco;Subnetting;Firewall", "Docs;APIs;Markdown", "JUnit;Selenium;Java",
-            "Flutter;Kotlin;Swift", "Pandas;Data Viz;ML", "Bash;Monitoring;Linux",
-            "IT Support;Windows;Helpdesk", "MERN;Node.js;React", "VAPT;Nessus;Compliance",
-            "Deep Learning;NLP;PyTorch", "React;Tailwind;UI", "GCP;AWS;Terraform", "BurpSuite;OWASP;Linux",
-            "MySQL;PostgreSQL;ERD", "Solution Design;Cloud;DevOps", "Customer Service;CRM;Troubleshooting",
-            "SEO;Content;Campaigns", "Node.js;Express;MongoDB", "HubSpot;Salesforce;Analytics", "Solidity;Smart Contracts;Ethereum"
-        ]
-    }
+        data = {
+            "title": [
+                "Software Engineer", "Data Analyst", "Web Developer", "Cybersecurity Analyst",
+                "Machine Learning Engineer", "DevOps Engineer", "Product Manager",
+                "Business Analyst", "UI/UX Designer", "Database Administrator",
+                "Cloud Engineer", "Network Engineer", "Technical Writer", "QA Engineer",
+                "Mobile App Developer", "Data Scientist", "System Administrator",
+                "IT Support Specialist", "Full Stack Developer", "Security Consultant",
+                "AI Researcher", "Frontend Developer", "Cloud Architect", "Penetration Tester",
+                "Database Engineer", "Solutions Architect", "Technical Support",
+                "Digital Marketer", "Backend Developer", "CRM Specialist", "Blockchain Developer"
+                    ],
+            "location": [
+                "USA", "Germany", "UK", "Remote",
+                "Canada", "Pakistan", "India",
+                "UAE", "Saudi Arabia", "Australia",
+                "South Africa", "Malaysia", "Egypt", "Bangladesh",
+                "Turkey", "USA", "Nigeria",
+                "Pakistan", "India", "Remote",
+                "UK", "Germany", "Canada", "USA",
+                "Australia", "Pakistan", "Bangladesh",
+                "UAE", "Saudi Arabia", "South Africa", "Malaysia"
+            ],
+            "skills_required": [
+                "Python;Django;SQL", "Excel;SQL;PowerBI", "HTML;CSS;JavaScript", "Security;Networking;Python",
+                "TensorFlow;Scikit-learn;Python", "Docker;CI/CD;Linux", "Agile;Leadership;JIRA",
+                "BI Tools;SQL;Communication", "Figma;Adobe XD;CSS", "SQL Server;DBA;Indexing",
+                "AWS;GCP;Azure", "Cisco;Subnetting;Firewall", "Docs;APIs;Markdown", "JUnit;Selenium;Java",
+                "Flutter;Kotlin;Swift", "Pandas;Data Viz;ML", "Bash;Monitoring;Linux",
+                "IT Support;Windows;Helpdesk", "MERN;Node.js;React", "VAPT;Nessus;Compliance",
+                "Deep Learning;NLP;PyTorch", "React;Tailwind;UI", "GCP;AWS;Terraform", "BurpSuite;OWASP;Linux",
+                "MySQL;PostgreSQL;ERD", "Solution Design;Cloud;DevOps", "Customer Service;CRM;Troubleshooting",
+                "SEO;Content;Campaigns", "Node.js;Express;MongoDB", "HubSpot;Salesforce;Analytics", "Solidity;Smart Contracts;Ethereum"
+            ]
+        }
 
-    jobs_df = pd.DataFrame(data)
+        jobs_df = pd.DataFrame(data)
 
-    st.title("Resume-based Job Recommender")
+        st.title("Resume-based Job Recommender")
 
-    resume = st.file_uploader("Upload your resume (PDF only)", type=["pdf"])
-    location = st.selectbox("Select preferred job location", list(jobs_df['location'].unique()))
+        resume = st.file_uploader("Upload your resume (PDF only)", type=["pdf"])
+        location = st.selectbox("Select preferred job location", list(jobs_df['location'].unique()))
 
-        if resume and location:
-            text = extract_text_from_resume(resume)
-            skills = extract_skills(text)
-            st.write("### Extracted Skills:", skills)
-            resume_id = insertr_data(text, ", ".join(skills), location)
+            if resume and location:
+                text = extract_text_from_resume(resume)
+                skills = extract_skills(text)
+                st.write("### Extracted Skills:", skills)
+                resume_id = insertr_data(text, ", ".join(skills), location)
 
-            matched_jobs = match_jobs(skills, location)
-            st.write("### Job Recommendations:")
-            st.dataframe(matched_jobs)
+                matched_jobs = match_jobs(skills, location)
+                st.write("### Job Recommendations:")
+                st.dataframe(matched_jobs)
 
-            if not matched_jobs.empty:
-                for _, row in matched_jobs.iterrows():
-                insertj_data(resume_id, row['title'], row['location'], row['skills_required'])
+                if not matched_jobs.empty:
+                    for _, row in matched_jobs.iterrows():
+                    insertj_data(resume_id, row['title'], row['location'], row['skills_required'])
 
-                fig = create_bar_chart(matched_jobs)
-                st.pyplot(fig)
+                    fig = create_bar_chart(matched_jobs)
+                    st.pyplot(fig)
 
-                csv = matched_jobs.to_csv(index=False).encode('utf-8')
-                st.download_button("Download Job Table", csv, "job_recommendations.csv", "text/csv")
+                    csv = matched_jobs.to_csv(index=False).encode('utf-8')
+                    st.download_button("Download Job Table", csv, "job_recommendations.csv", "text/csv")
 
-                buf = io.BytesIO()
-                fig.savefig(buf, format="png")
-                st.download_button("Download Graph", buf, "job_graph.png", "image/png")
-            else:
-                st.warning("No matching jobs found.")
+                    buf = io.BytesIO()
+                    fig.savefig(buf, format="png")
+                    st.download_button("Download Graph", buf, "job_graph.png", "image/png")
+                else:
+                    st.warning("No matching jobs found.")
 
 
 
