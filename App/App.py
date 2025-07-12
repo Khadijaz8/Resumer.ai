@@ -982,7 +982,7 @@ def run():
     resume = st.file_uploader("Upload your resume (PDF only)", type=["pdf"])
     location = st.selectbox("Select preferred job location", list(jobs_df['location'].unique()))
 
-        if resume and location:
+    if resume and location:
             text = extract_text_from_resume(resume)
             skills = extract_skills(text)
             st.write("### Extracted Skills:", skills)
@@ -992,7 +992,7 @@ def run():
             st.write("### Job Recommendations:")
             st.dataframe(matched_jobs)
 
-        if not matched_jobs.empty:
+    if not matched_jobs.empty:
             for _, row in matched_jobs.iterrows():
                 insertj_data(resume_id, row['title'], row['location'], row['skills_required'])
 
@@ -1005,7 +1005,7 @@ def run():
             buf = io.BytesIO()
             fig.savefig(buf, format="png")
             st.download_button("Download Graph", buf, "job_graph.png", "image/png")
-        else:
+    else:
             st.warning("No matching jobs found.")
 
 
