@@ -16,7 +16,6 @@ import plotly.express as px # to create visualisations at the admin session
 import plotly.graph_objects as go
 from geopy.geocoders import Nominatim
 # libraries used to parse the pdf files
-from pyresparser import ResumeParser
 from pdfminer.high_level import extract_text
 from pdfminer3.layout import LAParams, LTTextBox
 from pdfminer3.pdfpage import PDFPage
@@ -33,6 +32,7 @@ import nltk
 nltk.download('stopwords')
 nltk.download('punkt')
 nltk.download('wordnet')
+from pyresparser import ResumeParser
 
 
 
