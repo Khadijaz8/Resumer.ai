@@ -35,7 +35,7 @@ nltk.download('stopwords')
 nltk.download('punkt')
 nltk.download('wordnet')
 from pyresparser import ResumeParser
-OPENCAGE_API_KEY="441870bd43c842de9c116d11752639ba"
+OPENCAGE_API_KEY= "441870bd43c842de9c116d11752639ba"
 
 
 app_dir = "/mount/src/resumer.ai/App"
