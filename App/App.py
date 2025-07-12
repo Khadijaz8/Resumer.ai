@@ -979,6 +979,52 @@ def run():
 
         jobs_df = pd.DataFrame(data)
 
+        
+        # ---------------------- OUTSIDE THE IF/ELIF BLOCK ------------------------
+
+# Function to extract text from resume
+        def extract_text_from_resume(file):
+            if file is not None:
+                with open("temp_resume.pdf", "wb") as f:
+                    f.write(file.read())
+                text = extract_text("temp_resume.pdf")
+                return text
+            return ""
+
+
+# Function to extract skills from resume using regex instead of NLP
+        def extract_skills(text):
+            skill_keywords = [
+            "Python", "Django", "SQL", "Excel", "Tableau", "HTML", "CSS", "JavaScript",
+            "Security", "Networking", "TensorFlow", "Machine Learning", "Docker",
+            "Kubernetes", "AWS", "Azure", "Selenium", "Kotlin", "Swift", "R",
+            "Linux", "Agile", "Figma", "Scripting"
+                ]
+
+            found_skills = set()
+            for keyword in skill_keywords:
+                if re.search(rf'\b{re.escape(keyword)}\b', text, re.IGNORECASE):
+                    found_skills.add(keyword)
+            return list(found_skills)
+
+
+# Function to match jobs based on skills and location
+        def match_jobs(skills, location):
+            matched = []
+            for _, row in jobs_df.iterrows():
+                job_skills = row['skills_required'].split(';')
+                if row['location'] == location and any(skill in job_skills for skill in skills):
+                    matched.append(row)
+            return pd.DataFrame(matched)
+
+
+# Function to create bar chart
+        def create_bar_chart(df):
+            fig, ax = plt.subplots()
+            df['title'].value_counts().plot(kind='bar', ax=ax)
+            ax.set_title("Job Recommendations by Title")
+            ax.set_ylabel("Count")
+            return fig
         st.title("Resume-based Job Recommender")
 
         resume = st.file_uploader("Upload your resume (PDF only)", type=["pdf"])
@@ -1008,53 +1054,7 @@ def run():
                     fig.savefig(buf, format="png")
                     st.download_button("Download Graph", buf, "job_graph.png", "image/png")
                 else:
-                    st.warning("No matching jobs found.")
-        # ---------------------- OUTSIDE THE IF/ELIF BLOCK ------------------------
-
-# Function to extract text from resume
-def extract_text_from_resume(file):
-    if file is not None:
-        with open("temp_resume.pdf", "wb") as f:
-            f.write(file.read())
-        text = extract_text("temp_resume.pdf")
-        return text
-    return ""
-
-
-# Function to extract skills from resume using regex instead of NLP
-def extract_skills(text):
-    skill_keywords = [
-        "Python", "Django", "SQL", "Excel", "Tableau", "HTML", "CSS", "JavaScript",
-        "Security", "Networking", "TensorFlow", "Machine Learning", "Docker",
-        "Kubernetes", "AWS", "Azure", "Selenium", "Kotlin", "Swift", "R",
-        "Linux", "Agile", "Figma", "Scripting"
-    ]
-
-    found_skills = set()
-    for keyword in skill_keywords:
-        if re.search(rf'\b{re.escape(keyword)}\b', text, re.IGNORECASE):
-            found_skills.add(keyword)
-    return list(found_skills)
-
-
-# Function to match jobs based on skills and location
-def match_jobs(skills, location):
-    matched = []
-    for _, row in jobs_df.iterrows():
-        job_skills = row['skills_required'].split(';')
-        if row['location'] == location and any(skill in job_skills for skill in skills):
-            matched.append(row)
-    return pd.DataFrame(matched)
-
-
-# Function to create bar chart
-def create_bar_chart(df):
-    fig, ax = plt.subplots()
-    df['title'].value_counts().plot(kind='bar', ax=ax)
-    ax.set_title("Job Recommendations by Title")
-    ax.set_ylabel("Count")
-    return fig
-    
+                    st.warning("No matching jobs found.")    
 
 
 
