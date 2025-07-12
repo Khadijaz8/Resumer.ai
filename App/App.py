@@ -355,7 +355,7 @@ def create_bar_chart(df):
     return fig
 jobs_df = pd.DataFrame(data)
 
-    st.title("Resume-based Job Recommender")
+st.title("Resume-based Job Recommender")
 
         resume = st.file_uploader("Upload your resume (PDF only)", type=["pdf"])
         location = st.selectbox("Select preferred job location", list(jobs_df['location'].unique()))
