@@ -1060,7 +1060,7 @@ def create_bar_chart(df):
     #    st.success('Welcome to Admin Panel')
 
     ##### CODE FOR ADMIN SIDE (ADMIN) ######
-    else:
+else:
         st.success('Welcome to Admin Side')
 #  Admin Login
         ad_user = st.text_input("Username")
