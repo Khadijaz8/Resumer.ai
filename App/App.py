@@ -6,6 +6,7 @@ import base64, random
 import time,datetime
 import pymysql
 import os
+import spacy
 import socket
 import platform
 import geocoder
