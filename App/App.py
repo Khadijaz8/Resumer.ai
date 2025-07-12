@@ -39,7 +39,7 @@ OPENCAGE_API_KEY= "441870bd43c842de9c116d11752639ba"
 
 
 app_dir = "/mount/src/resumer.ai/App"
-# st.write("app_dir:", app_dir)
+st.write("api_key:", OPENCAGE_API_KEY)
 # Image paths (Logo folder is inside App)
 dark_logo = os.path.join(app_dir, "Logo", "RESUME.PNG")
 light_logo = os.path.join(app_dir, "Logo", "RESUM.PNG")
