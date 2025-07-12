@@ -976,7 +976,7 @@ def run():
     }
 
 
-        jobs_df = pd.DataFrame(data)
+    jobs_df = pd.DataFrame(data)
 
 
         
