@@ -15,6 +15,7 @@ import matplotlib.pyplot as plt
 import plotly.express as px # to create visualisations at the admin session
 import plotly.graph_objects as go
 from geopy.geocoders import Nominatim
+from opencage.geocoder import OpenCageGeocode
 # libraries used to parse the pdf files
 from pdfminer.high_level import extract_text
 from pdfminer3.layout import LAParams, LTTextBox
@@ -28,12 +29,13 @@ from io import BytesIO
 from docxtpl import DocxTemplate  # Ensure you have this import
 # pre stored data for prediction purposes
 from Courses import ds_course,web_course,android_course,ios_course,uiux_course,resume_videos,interview_videos
+geolocator = OpenCageGeocode(st.secrets["OPENCAGE_API_KEY"])
 import nltk
 nltk.download('stopwords')
 nltk.download('punkt')
 nltk.download('wordnet')
 from pyresparser import ResumeParser
-geolocator = Nominatim(user_agent="resumer_ai_app")
+
 
 app_dir = "/mount/src/resumer.ai/App"
 # st.write("app_dir:", app_dir)
@@ -497,8 +499,16 @@ def run():
         os_name_ver = platform.system() + " " + platform.release()
         g = geocoder.ip('me')
         latlong = g.latlng
-        geolocator = Nominatim(user_agent="http")
-        location = geolocator.reverse(latlong, language='en')
+        if latlong:
+    results = geolocator.reverse_geocode(latlong[0], latlong[1])
+    if results and len(results):
+        location = results[0]['formatted']
+    else:
+        location = "Unknown Location"
+else:
+    location = "LatLong Not Found"
+        # geolocator = Nominatim(user_agent="http")
+        # location = geolocator.reverse(latlong, language='en')
         address = location.raw['address']
         cityy = address.get('city', '')
         statee = address.get('state', '')
