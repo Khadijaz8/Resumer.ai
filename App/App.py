@@ -34,15 +34,16 @@ nltk.download('punkt')
 nltk.download('wordnet')
 from pyresparser import ResumeParser
 
-
+app_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.dirname(app_dir)
 
 
 # Toggle using checkbox
 mode = st.sidebar.checkbox("🌗")
 
 # Use your uploaded image for dark mode
-dark_logo = "./Logo/RESUME.PNG"
-light_logo = "./Logo/RESUM.PNG"  # Replace with your light mode logo filename
+dark_logo = os.path.join(project_root, "Logo", "RESUME.PNG")
+light_logo = os.path.join(project_root, "Logo", "RESUM.PNG")  # Replace with your light mode logo filename
 
 # Apply styles based on mode
 if mode:
@@ -138,6 +139,7 @@ else:
         </style>
     """, unsafe_allow_html=True)
     st.image(light_logo, use_column_width=True)
+    
 
 
 
