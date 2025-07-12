@@ -1042,7 +1042,7 @@ def run():
 
                 if not matched_jobs.empty:
                     for _, row in matched_jobs.iterrows():
-                    insertj_data(resume_id, row['title'], row['location'], row['skills_required'])
+                        insertj_data(resume_id, row['title'], row['location'], row['skills_required'])
 
                     fig = create_bar_chart(matched_jobs)
                     st.pyplot(fig)
