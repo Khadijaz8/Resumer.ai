@@ -8,8 +8,7 @@ import pymysql
 import os
 import spacy
 import socket
-import platform
-import geocoder
+import platformimport geocoder
 import re
 import secrets
 import io,random
@@ -900,7 +899,7 @@ def run():
         # plotting pie chart for user ratings
         st.subheader("**Past User Rating's**")
         fig = px.pie(values=values, names=labels, title="Chart of User Rating Score From 1 - 5", color_discrete_sequence=px.colors.sequential.Aggrnyl)
-        st.plotly_chart(fig)
+        st.plotly_chart(fig, use_container_width=True)
 
 
         #  Fetching Comment History
@@ -1128,7 +1127,7 @@ def run():
                 # Pie chart for user ratings
                 st.subheader("**User Rating's**")
                 fig = px.pie(values=values, names=labels, title="Chart of User Rating Score From 1 - 5 🤗", color_discrete_sequence=px.colors.sequential.Aggrnyl)
-                st.plotly_chart(fig)
+                st.plotly_chart(fig, use_container_width=True)
 
                 # fetching Predicted_Field from the query and getting the unique values and total value count                 
                 labels = plot_data.Predicted_Field.unique()
@@ -1137,7 +1136,7 @@ def run():
                 # Pie chart for predicted field recommendations
                 st.subheader("**Pie-Chart for Predicted Field Recommendation**")
                 fig = px.pie(df, values=values, names=labels, title='Predicted Field according to the Skills 👽', color_discrete_sequence=px.colors.sequential.Aggrnyl_r)
-                st.plotly_chart(fig)
+                st.plotly_chart(fig, use_container_width=True)
 
                 # fetching User_Level from the query and getting the unique values and total value count                 
                 labels = plot_data.User_Level.unique()
@@ -1146,7 +1145,7 @@ def run():
                 # Pie chart for User's👨‍💻 Experienced Level
                 st.subheader("**Pie-Chart for User's Experienced Level**")
                 fig = px.pie(df, values=values, names=labels, title="Pie-Chart 📈 for User's 👨‍💻 Experienced Level", color_discrete_sequence=px.colors.sequential.RdBu)
-                st.plotly_chart(fig)
+                st.plotly_chart(fig, use_container_width=True)
 
                 # fetching resume_score from the query and getting the unique values and total value count                 
                 labels = plot_data.resume_score.unique()                
@@ -1155,7 +1154,7 @@ def run():
                 # Pie chart for Resume Score
                 st.subheader("**Pie-Chart for Resume Score**")
                 fig = px.pie(df, values=values, names=labels, title='From 1 to 100 💯', color_discrete_sequence=px.colors.sequential.Agsunset)
-                st.plotly_chart(fig)
+                st.plotly_chart(fig, use_container_width=True)
 
                 # fetching IP_add from the query and getting the unique values and total value count 
                 labels = plot_data.IP_add.unique()
@@ -1164,7 +1163,7 @@ def run():
                 # Pie chart for Users
                 st.subheader("**Pie-Chart for Users App Used Count**")
                 fig = px.pie(df, values=values, names=labels, title='Usage Based On IP Address 👥', color_discrete_sequence=px.colors.sequential.matter_r)
-                st.plotly_chart(fig)
+                st.plotly_chart(fig, use_container_width=True)
 
                 # fetching City from the query and getting the unique values and total value count 
                 labels = plot_data.City.unique()
@@ -1173,7 +1172,7 @@ def run():
                 # Pie chart for City
                 st.subheader("**Pie-Chart for City**")
                 fig = px.pie(df, values=values, names=labels, title='Usage Based On City 🌆', color_discrete_sequence=px.colors.sequential.Jet)
-                st.plotly_chart(fig)
+                st.plotly_chart(fig, use_container_width=True)
 
                 # fetching State from the query and getting the unique values and total value count 
                 labels = plot_data.State.unique()
@@ -1182,7 +1181,7 @@ def run():
                 # Pie chart for State
                 st.subheader("**Pie-Chart for State**")
                 fig = px.pie(df, values=values, names=labels, title='Usage Based on State 🚉', color_discrete_sequence=px.colors.sequential.PuBu_r)
-                st.plotly_chart(fig)
+                st.plotly_chart(fig, use_container_width=True)
 
                 # fetching Country from the query and getting the unique values and total value count 
                 labels = plot_data.Country.unique()
@@ -1191,7 +1190,7 @@ def run():
                 # Pie chart for    Country
                 st.subheader("**Pie-Chart for Country**")
                 fig = px.pie(df, values=values, names=labels, title='Usage Based on Country 🌏', color_discrete_sequence=px.colors.sequential.Purpor_r)
-                st.plotly_chart(fig)
+                st.plotly_chart(fig, use_container_width=True)
         
 
 # Calling the main (run()) function to make the whole process run
